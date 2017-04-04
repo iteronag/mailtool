@@ -1,0 +1,28 @@
+
+<div class="row-fluid">
+  <%= form_for @email_template, html: { class: "form-horizontal"} do |f| %>
+    <div class="form-group">
+      <%= f.label :group_id, class: "control-label col-sm-2" %>
+      <div class="col-sm-9">
+        <input type='text' class="form-control" value="<%= @email_template.group.name %>" readonly />
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :version, class: "control-label col-sm-2" %>
+      <div class="col-sm-9">
+        <%= f.text_field :version, readonly: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, "Text", class: "control-label col-sm-2" %>
+      <div class="col-sm-9">
+        <%= f.text_area :description, class: "wysihtml5" %>
+      </div>
+    </div>
+    <div class="col-md-offset-2">
+      <%= f.hidden_field :language %>
+      <%= f.hidden_field :group_id %>
+      <%= f.submit "Save", :class => 'btn btn-inverse btn-primary', disable_with: "Submitting..."  %>
+    </div>
+  <% end %>
+</div>

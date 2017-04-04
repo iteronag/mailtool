@@ -1,0 +1,25 @@
+<div class="col-md-12">
+  <h1 class="underline">Show Mail ID Definition</h1>
+  <dl class="dl-horizontal">
+    <dt><strong>From</strong></dt>
+    <dd><%= @mail_id_definition.from %></dd>
+    <dt><strong>CC</strong></dt>
+    <dd><%= @mail_id_definition.cc %></dd>
+    <dt><strong>BCC</strong></dt>
+    <dd><%= @mail_id_definition.bcc %></dd>
+    <dt><strong>Subject</strong></dt>
+    <dd><%= @mail_id_definition.subject %></dd>
+    <dt><strong>Ageing reminder in days</strong></dt>
+    <dd><%= @mail_id_definition.ageing_reminder %></dd>
+  </dl>
+
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                mail_id_definitions_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_mail_id_definition_path(@mail_id_definition), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                mail_id_definition_path(@mail_id_definition),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+</div>

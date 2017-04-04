@@ -1,0 +1,12 @@
+
+<fieldset>
+  <legend> Import Products </legend>
+  <%= form_tag import_opportunity_generators_path, multipart: true, class: "form-inline" do %>
+   <div class="form-group">
+    <label for="email">Email address:</label>
+    <%= file_field_tag :file, class: "form-control" %>
+  </div>
+    <%= submit_tag "Import", :class => 'btn btn-inverse btn-primary', disable_with: "Submitting..."%>
+  <% end %>
+</fieldset>
+

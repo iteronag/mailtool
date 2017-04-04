@@ -1,0 +1,64 @@
+<h1 class="underline">Listing Opportunity Generators</h1>
+<div class="row-fluid">
+
+<%= link_to 'Opportunity Review & Mail Generator', review_opportunity_generators_path, class: "btn btn-primary", role: "button" %>
+</div>
+<br/>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Title</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Mail</th>
+      <th>Phone number</th>
+      <th>Generated date</th>
+      <th>Language</th>
+      <th>Status</th>
+      <th>Group</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @opportunity_generators.each do |opportunity_generator| %>
+    <tr>
+      <td><%= opportunity_generator.company %></td>
+      <td><%= opportunity_generator.title %></td>
+      <td><%= opportunity_generator.first_name %></td>
+      <td><%= opportunity_generator.last_name %></td>
+      <td><%= opportunity_generator.mail_id %></td>
+      <td><%= opportunity_generator.phone_number %></td>
+      <td><%= opportunity_generator.generated_date %></td>
+      <td><%= opportunity_generator.language %></td>
+      <td><%= opportunity_generator.status %></td>
+      <td><%= opportunity_generator.group.name %></td>
+      <td><%= link_to 'Show', opportunity_generator, class: "btn-link" %></td>
+      <td><%= link_to 'Edit', edit_opportunity_generator_path(opportunity_generator), class: "btn-link" %></td>
+      <td><%= link_to 'Delete', opportunity_generator, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-link" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="13">
+        <div id="pagination">
+          <%= will_paginate(@opportunity_generators, renderer: BootstrapPagination::Rails)  %>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<br />
+<%= link_to 'New Opportunity generator', new_opportunity_generator_path, class: "btn-link"  %>
+<style type="text/css">
+  tfoot {
+    display: table-header-group !important;
+  }
+  .search-box{
+    height: 22px;
+  }
+</style>

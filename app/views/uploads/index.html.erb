@@ -1,0 +1,27 @@
+<div class="image-container">
+<% @uploads ||= Upload.all %>
+<% @uploads.each_with_index do |upload, i| %>
+  <a href="javascript:void(0)"><div class="image"><%= image_tag(upload.asset.url(:thumb), class: "img-thumbnail", width: "100px", height: "100px") %></div></a>
+<% end %>
+</div>
+<style type="text/css">
+.image {
+display: inline-block;
+float:left;
+margin: 10px;
+padding: 5px;
+width: 120px;
+height: 120px;
+/*border: 2px solid #7daf42;*/
+border-radius: 5px;
+}
+.image-container{
+  width: 100%;
+  height: 250px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.modal-dialog{
+  width: 70%;
+}
+</style>

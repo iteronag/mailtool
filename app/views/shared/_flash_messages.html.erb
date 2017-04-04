@@ -1,0 +1,13 @@
+<% flash.each do |type, message| %>
+  <div class="alert <%= bootstrap_class_for(type) %> fade in">
+    <button class="close" data-dismiss="alert">×</button>
+    <%= message %>
+  </div>
+<% end %>
+
+<script type="text/template" id='tmpl_js_flash_message'>
+  <div class="alert {{ type }} fade in" id="flash-message">
+    <button data-dismiss="alert" class="close">×</button>
+    {{ message }}
+  </div>
+</script>

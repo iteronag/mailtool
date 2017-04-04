@@ -1,0 +1,36 @@
+<div class="navbar navbar-inverse" id="app-header">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= root_path %>">
+        <%= image_tag("Logo.PNG") %>
+      </a>
+    </div>
+    <%
+    controller = params[:controller]
+    action = params[:action]
+    %>
+    <div id="navbar" class="navbar-collapse collapse pull-right">
+      <ul class="nav navbar-nav">
+        <li class = "<%=(controller == 'general') ? 'active' : '' %>">
+          <%= link_to('Home', root_path, {id: "menuhome", name: 'menugroup', "data-gtracker" => "Landing page|Menu|Home"}) %>
+        </li>
+        <li class = "<%=(controller == 'groups') ? 'active' : '' %>">
+          <%= link_to('Group', groups_path, {id: "menugroup", name: 'menugroup'})%>
+        </li>
+        <li class="<%=(controller == 'email_templates') ? 'active' : '' %>">
+          <%= link_to('Email Templates', language_email_templates_path("english"), {id: "menuet", name: 'menuet'})%>
+        </li>
+        <li class="<%= (controller == 'mail_id_definitions') ? 'active' : '' %>">
+          <%= link_to('Mail ID Definition', mail_id_definitions_path, {id: "menumid", name: 'menumid'})%>
+        </li>
+        <li class="<%= (controller == 'opportunity_generators' && action != 'review') ? 'active' : '' %>">
+          <%= link_to('Opportunity Generators', opportunity_generators_path, {id: "menuog", name: 'menuog'})%>
+        </li>
+        <li class="<%= (controller == 'opportunity_generators' && action == 'review') ? 'active' : '' %>">
+          <%= link_to('Opportunity Review', review_opportunity_generators_path, {id: "menuogr", name: 'menuogr'})%>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</div>

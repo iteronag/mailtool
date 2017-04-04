@@ -1,0 +1,16 @@
+common: &common
+  application_name: Mail Tool
+  validator_domain: "https://api.bulkemailverifier.com/api/a/v1"
+  validator_key: F610D99D95304478
+  #validator_key: 37F5399F6FC8F245
+local:
+  <<: *common
+
+# Load special settings after common setting to override
+development:
+  <<: *common
+
+# Load special settings after common setting to override
+production:
+  <<: *common
+

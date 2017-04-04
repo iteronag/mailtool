@@ -1,0 +1,155 @@
+<%= javascript_include_tag "bootstrap-datepicker", "jquery.inputmask.bundle" %>
+  <%= form_for(@opportunity_generator, html: { class: "form-horizontal" }) do |f| %>
+  <div class="form-group required">
+    <%= f.label :group_id, nil, class: " col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.select :group_id, options_for_select(group_options, f.object.group_id), {},{class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :company, nil, class: " col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.text_field :company, class: "form-control", placeholder: "Company" %>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :website, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.text_field :website, class: "form-control", placeholder: "Website" %>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :title, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.select :title, options_for_select(OpportunityGenerator::TITLES, f.object.title), {},{class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group required">
+    <%= f.label :first_name, nil, class: " col-sm-2"  %>
+    <div class="col-sm-3">
+      <%= f.text_field :first_name, class: "form-control", placeholder: "First name" %>
+    </div>
+    <%= f.label :last_name, nil, class: " col-sm-2"  %>
+    <div class="col-sm-3">
+      <%= f.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :mail_id, nil, class: " col-sm-2"  %>
+    <div class="col-sm-3">
+        <%= f.email_field :mail_id, class: "form-control", placeholder: "Mail Id" %>
+    </div>
+    <%= f.label :is_hr_or_info, nil, class: " col-sm-2"  %>
+    <div class="col-sm-3">
+      <%= f.check_box :is_hr_or_info, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :generated_mail_id1, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.email_field :generated_mail_id1, readonly: f.object.is_hr_or_info, class: "form-control", placeholder: "Generated mail id 1" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :generated_mail_id2, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.email_field :generated_mail_id2, readonly: f.object.is_hr_or_info, class: "form-control", placeholder: "Generated mail id 2" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone_number, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone number" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :technology, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.text_field :technology, class: "form-control", placeholder: "Technology" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :job_title, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.text_field :job_title, class: "form-control", placeholder: "Job title" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :job_requirements, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.text_area :job_requirements, class: "form-control", placeholder: "Job requirements", rows: 4 %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :job_url, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.url_field :job_url, class: "form-control", placeholder: "Job URL" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :linkedin_url, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.url_field :linkedin_url, class: "form-control", placeholder: "Linkedin URL" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :generated_date, nil, class: " col-sm-2"  %>
+
+    <div class="col-sm-3">
+      <div class='col-sm-8' >
+        <%= f.text_field :generated_date, class: "form-control date", placeholder: "Generated date", readonly: true %>
+      </div>
+    </div>
+    <%= f.label :status, nil, class: " col-sm-2"  %>
+    <div class="col-sm-3">
+      <%= f.select :status, options_for_select(OpportunityGenerator::STATUSES, f.object.status), {},{class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :language, nil, class: " col-sm-2"  %>
+    <div class="col-sm-8">
+      <%= f.select :language, options_for_select(OpportunityGenerator.languages, f.object.language), {},{class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <%= f.submit 'Submit & Forward', :class => 'btn btn-inverse btn-primary', disable_with: "Submitting..." %>
+    </div>
+  </div>
+  <% end %>
+<!--
+  <script src="/assets/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+
+  jQuery('#opportunity_generator_generated_date').datetpicker({
+    format: "dd/mm/yyyy"
+  });
+
+});
+
+</script> -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.date').each(function() {
+    $(this).datepicker({autoclose: true, format: 'yyyy/mm/dd'});
+  });
+})
+</script>

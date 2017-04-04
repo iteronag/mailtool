@@ -1,0 +1,88 @@
+class GroupsController < ApplicationController
+  # GET /groups
+  # GET /groups.json
+  def index
+    @groups = Group.paginate(:page => params[:page]).order('id DESC')
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @groups }
+    end
+  end
+
+  # GET /groups/1
+  # GET /groups/1.json
+  def show
+    @group = Group.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @group }
+    end
+  end
+
+  # GET /groups/new
+  # GET /groups/new.json
+  def new
+    @group = Group.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @group }
+    end
+  end
+
+  # GET /groups/1/edit
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  # POST /groups
+  # POST /groups.json
+  def create
+    @group = Group.new(params[:group])
+
+    respond_to do |format|
+      if @group.save
+        flash_message('Group', true)
+        format.html { redirect_to @group}
+        format.json { render json: @group, status: :created, location: @group }
+      else
+        flash_message('Group', false)
+        format.html { render action: "new" }
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /groups/1
+  # PUT /groups/1.json
+  def update
+    @group = Group.find(params[:id])
+
+    respond_to do |format|
+      if @group.update_attributes(params[:group])
+        flash_message('Group', true)
+        format.html { redirect_to @group }
+        format.json { head :no_content }
+      else
+        flash_message('Group', false)
+        format.html { render action: "edit" }
+        format.json { render json: @group.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /groups/1
+  # DELETE /groups/1.json
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    flash_message('Group', true)
+
+    respond_to do |format|
+      format.html { redirect_to groups_url }
+      format.json { head :no_content }
+    end
+  end
+end

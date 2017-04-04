@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= Rails.configuration.application_name %></title>
+  <link rel="shortcut icon" href="/assets/favico.ico">
+  <%= stylesheet_link_tag "application", "dataTables.tableTools", :media => "all" %>
+  <%= javascript_include_tag "application", "bootbox.min"%>
+  <link href="/assets/style.css" rel="stylesheet">
+  <link href="/assets/tab.css" rel="stylesheet">
+  <link href="/assets/build.css" rel="stylesheet">
+  <link href="/assets/bootstrap-select.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet">
+  <%= javascript_include_tag "dataTables.tableTools", "jquery.inputmask.bundle", params[:controller] %>
+
+</head>
+<body>
+  <%= render :partial => '/layouts/header' %>
+  <%= render partial: "shared/flash_messages", flash: flash %>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <%= render partial: "shared/error_template" %>
+  <%= render partial: "shared/confirmation_box" %>
+</body>
+</html>

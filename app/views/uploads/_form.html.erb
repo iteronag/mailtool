@@ -1,0 +1,17 @@
+
+
+ <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+  <div class="form-group">
+    <div class="col-sm-9">
+      <div id="progress">
+      <div class="bar" style="width: 0%;"></div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <label class="btn btn-default btn-file center-block">
+        Select file to upload <%= f.file_field :asset%>
+      </label>
+      <span class="error-message"></span>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<%= form_for@mail_id_definition, html: { class: "form-horizontal" } do |f| %>
+  <div class="form-group required">
+    <%= f.label :group_id, nil, class: "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.select :group_id, options_for_select(group_options, f.object.group_id), {},{class: "form-control"} %>
+    </div>
+  </div>
+  <div class="form-group required">
+    <%= f.label :from, nil, class: "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.email_field :from, class: "form-control", placeholder: "From" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :cc, nil, class: "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.email_field :cc, class: "form-control", placeholder: "CC" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :bcc, nil, class: "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.email_field :bcc, class: "form-control", placeholder: "BCC" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :subject, nil, class: "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.text_field :subject, class: "form-control", min: "0"%>
+    </div>
+  </div>
+  <div class="form-group required">
+    <%= f.label :ageing_reminder, nil, class: "control-label col-sm-2" %>
+    <div class="col-sm-8">
+      <%= f.number_field :ageing_reminder, class: "form-control", min: "0"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit 'Save', :class => 'btn btn-inverse btn-primary', disable_with: "Submitting..." %>
+  </div>
+  </div>
+<% end %>

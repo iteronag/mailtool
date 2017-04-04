@@ -1,0 +1,12 @@
+#form_tab .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+#form_tab > ul li.active a {
+	background: #8BC34A;
+	color: #fff;
+}
+#form_tab .tab-content {
+  /* background-color: #8BC34A; */
+  padding : 5px 15px;
+  min-height:300px;
+}

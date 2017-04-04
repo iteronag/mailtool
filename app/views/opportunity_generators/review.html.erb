@@ -1,0 +1,229 @@
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.1.2/js/buttons.flash.min.js"></script>
+<%= javascript_include_tag "bootstrap-datepicker" %>
+<h1 class="underline">Listing Opportunity Generators</h1>
+
+<div class="row" style="margin-top: -25px;">
+  <button type="button" class="btn btn-primary pull-right" data-toggle="collapse" data-target="#searchform-container">
+    Filter Options
+  </button>
+</div>
+<div id="searchform-container" class="collapse row">
+  <%= form_tag(review_opportunity_generators_url, class: "search-form form-inline") do |f| %>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :company, params[:company], class: "form-control", placeholder: "Company", "data-toggle" => "tooltip", title: "Company" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :mail_id, params[:mail_id], class: "form-control", placeholder: "Mail ID", "data-toggle" => "tooltip", title: "Mail ID" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :generated_mail_id1, params[:generated_mail_id1], class: "form-control", placeholder: "Generated Mail ID 1", "data-toggle" => "tooltip", title: "Generated Mail ID 1" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :technology, params[:technology], class: "form-control", placeholder: "Technology", "data-toggle" => "tooltip", title: "Technology" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :first_name, params[:first_name], class: "form-control", placeholder: "First Name", "data-toggle" => "tooltip", title: "First Name" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :last_name, params[:last_name], class: "form-control", placeholder: "Last Name", "data-toggle" => "tooltip", title: "Last Name" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :generated_mail_id2, params[:generated_mail_id2], class: "form-control", placeholder: "Generated Mail ID 2", "data-toggle" => "tooltip", title: "Generated Mail ID 2" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+            <%= text_field_tag :ageing_reminder, params[:ageing_reminder], class: "form-control", placeholder: "Ageing", "data-toggle" => "tooltip", title: "Ageing" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+              <%= text_field_tag :generated_from, params[:generated_from], class: "form-control datepicker", placeholder: "Generated From", readonly: true, "data-toggle" => "tooltip", title: "Generated From" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <div class = "col-sm-3">
+              <%= text_field_tag :generated_to, params[:generated_to], class: "form-control datepicker", placeholder: "Generated To", readonly: true, "data-toggle" => "tooltip", title: "Generated To" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label class="col-sm-5" for = "name">Status</label>
+          <div class = "col-sm-7">
+            <%= select_tag :status, options_for_select(OpportunityGenerator::STATUSES, params[:status]), class: "form-control", "data-toggle" => "tooltip", title: "Status" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="checkbox-primary">
+          <%= check_box_tag :reminder, 'ReminderTemplate', params[:reminder], class: "form-check-input" %>
+          <label for="reminder" >
+            All Reminder
+          </label>
+        </div>
+      </div>
+      <div class="row pull-right">
+        <button type = "submit" class = "btn btn-primary search-btn">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
+        </button>
+      </div>
+    </div>
+  <%end%>
+</div>
+
+<div class="table-responsive listing_table" style="margin-top: 10px;">
+  <table id="datatable" class="display nowrap" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Template ID</th>
+        <th>Company</th>
+        <th>Website</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Mail Id</th>
+        <th>Is hr or info</th>
+        <th>Generated mail id1</th>
+        <th>Generated mail id2</th>
+        <th>Phone number</th>
+        <th>Technology</th>
+        <th>Job url</th>
+        <th>Linkedin url</th>
+        <th>Generated date</th>
+        <th>Status</th>
+        <th>Text Version</th>
+        <th>Ageing</th>
+        <th>Group</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @opportunity_generators.each do |opportunity_generator| %>
+      <tr>
+        <td><%= opportunity_generator.id %></td>
+        <td><%= opportunity_generator.template_id %></td>
+        <td><%= opportunity_generator.company %></td>
+        <td><%= opportunity_generator.website %></td>
+        <!-- <td><#%= opportunity_generator.title %></td> -->
+        <td><%= opportunity_generator.first_name %></td>
+        <td><%= opportunity_generator.last_name %></td>
+        <td><%= opportunity_generator.mail_id %></td>
+        <td><%= opportunity_generator.is_hr_or_info %></td>
+        <td><%= opportunity_generator.generated_mail_id1 %></td>
+        <td><%= opportunity_generator.generated_mail_id2 %></td>
+        <td><%= opportunity_generator.phone_number %></td>
+        <td><%= opportunity_generator.technology %></td>
+        <!-- <td><#%= opportunity_generator.job_title %></td> -->
+        <!-- <td><#%= opportunity_generator.job_requirements %></td> -->
+        <td><%= opportunity_generator.job_url %></td>
+        <td><%= opportunity_generator.linkedin_url %></td>
+        <td><%= opportunity_generator.generated_date %></td>
+        <td><%= opportunity_generator.status %></td>
+        <td><%= opportunity_generator.version %></td>
+        <td><%= opportunity_generator.ageing %></td>
+        <td><%= opportunity_generator.group_name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= form_tag(review_opportunity_generators_url, class: "form-horizontal") do |f| %>
+
+<div style="display:inline">
+  <div class="row" style="padding:15px 0px;">
+    <input type="hidden" name="ids" id="ids">
+    <input type="hidden" name="status" id="status">
+    <div class="btn-wrapper col-sm-2">
+    <%= link_to 'Back', opportunity_generators_path, class: "btn btn-link ng-scope" %>
+    </div>
+    <% OpportunityGenerator.statuses.each do |key, status| %>
+      <div class="btn-wrapper col-sm-2">
+        <%= button_tag key.to_s.titleize, :class => 'btn btn-inverse btn-primary update_status', value: status, name: "btn_status " %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
+<style type="text/css">
+
+/*tfoot {
+display: table-header-group !important;
+}
+.search-box{
+  height: 22px;
+}
+form.search-form {
+  padding-top: 15px;
+  padding-left: 15px;
+  border:1px solid #c4e194;
+}
+*/
+
+.dataTables_filter{
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #aaa;
+}
+.listing_table label{
+  margin-bottom: 0px !important;
+}
+.listing_table input{
+  color: #888 !important;
+}
+.paginate_button {
+    border: 0px !important;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px !important;
+    padding: 0px !important;
+    text-align: center;
+    text-decoration: none !important;
+}
+.row > div{
+  padding: 5px 0px;
+}
+.row{
+  margin: 0px !important;
+}
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('input.datepicker').each(function() {
+      $(this).datepicker({autoclose: true, format: "yyyy/mm/dd"});
+    });
+  })
+</script>

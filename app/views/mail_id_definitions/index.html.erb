@@ -1,0 +1,45 @@
+<h1 class="underline">Listing Mail Id Definitions</h1>
+<table class="table table-hover">
+<thead>
+  <tr>
+    <th>Group</th>
+    <th>From</th>
+    <th>Cc</th>
+    <th>Bcc</th>
+    <th>Subject</th>
+    <th>Ageing reminder in days</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+
+<% @mail_id_definitions.each do |mail_id_definition| %>
+  <tr>
+    <td><%= mail_id_definition.group.name %></td>
+    <td><%= mail_id_definition.from %></td>
+    <td><%= mail_id_definition.cc %></td>
+    <td><%= mail_id_definition.bcc %></td>
+    <td><%= mail_id_definition.subject %></td>
+    <td><%= mail_id_definition.ageing_reminder %></td>
+    <td><%= link_to 'Show', mail_id_definition, class: "btn-link"  %></td>
+    <td><%= link_to 'Edit', edit_mail_id_definition_path(mail_id_definition), class: "btn-link"  %></td>
+    <td><%= link_to 'Destroy', mail_id_definition, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-link"  %></td>
+  </tr>
+<% end %>
+</tbody>
+  <tfoot>
+    <tr>
+    <td colspan="9">
+      <div id="pagination">
+        <%= will_paginate(@mail_id_definitions, renderer: BootstrapPagination::Rails)  %>
+      </div>
+    </td>
+    </tr>
+  </tfoot>
+</table>
+
+<br />
+
+<%= link_to 'New Mail ID Definition', new_mail_id_definition_path, class: "btn-link" %>

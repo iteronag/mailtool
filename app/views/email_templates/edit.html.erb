@@ -1,0 +1,7 @@
+<h1 class="underline">Editing Email Template</h1>
+<%= render 'form' %>
+
+<!-- <!%= link_to 'Show', show_language_email_templates_path({id: @email_template.id, language: @email_template.language }), class: "btn-link"  %> | -->
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              language_email_templates_path(@email_template.language), class: "btn-link"  %>
+

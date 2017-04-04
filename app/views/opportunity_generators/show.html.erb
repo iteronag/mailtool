@@ -1,0 +1,54 @@
+<div class="col-md-12">
+  <h1 class="underline">Show Mail ID Defenition</h1>
+  <dl class="dl-horizontal">
+
+    <dt><strong>Group</strong></dt>
+    <dd><%= @opportunity_generator.group.name %></dd>
+    <dt><strong>Company</strong></dt>
+    <dd><%= @opportunity_generator.company %></dd>
+    <dt><strong>Website</strong></dt>
+    <dd><%= @opportunity_generator.website %></dd>
+    <dt><strong>Title</strong></dt>
+    <dd><%= @opportunity_generator.title %></dd>
+    <dt><strong>First name</strong></dt>
+    <dd><%= @opportunity_generator.first_name %></dd>
+    <dt><strong>Last name</strong></dt>
+    <dd><%= @opportunity_generator.last_name %></dd>
+    <dt><strong>Mail</strong></dt>
+    <dd><%= @opportunity_generator.mail_id %></dd>
+    <dt><strong>Is hr or info</strong></dt>
+    <dd><%= @opportunity_generator.is_hr_or_info %></dd>
+    <dt><strong>Generated mail id1</strong></dt>
+    <dd><%= @opportunity_generator.generated_mail_id1 %></dd>
+    <dt><strong>Generated mail id2</strong></dt>
+    <dd><%= @opportunity_generator.generated_mail_id2 %></dd>
+    <dt><strong>Phone number</strong></dt>
+    <dd><%= @opportunity_generator.phone_number %></dd>
+    <dt><strong>Technology</strong></dt>
+    <dd><%= @opportunity_generator.technology %></dd>
+    <dt><strong>Job title</strong></dt>
+    <dd><%= @opportunity_generator.job_title %></dd>
+    <dt><strong>Job requirements</strong></dt>
+    <dd><%= @opportunity_generator.job_requirements %></dd>
+    <dt><strong>Job url</strong></dt>
+    <dd><%= @opportunity_generator.job_url %></dd>
+    <dt><strong>Linkedin url</strong></dt>
+    <dd><%= @opportunity_generator.linkedin_url %></dd>
+    <dt><strong>Generated date</strong></dt>
+    <dd><%= @opportunity_generator.generated_date %></dd>
+    <dt><strong>Language</strong></dt>
+    <dd><%= @opportunity_generator.language %></dd>
+    <dt><strong>Status</strong></dt>
+    <dd><%= @opportunity_generator.status %></dd>
+  </dl>
+
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+  opportunity_generators_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+  edit_opportunity_generator_path(@opportunity_generator), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  opportunity_generator_path,
+  :method => 'delete',
+  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+  :class => 'btn btn-danger' %>
+</div>

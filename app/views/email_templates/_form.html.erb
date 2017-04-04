@@ -1,0 +1,55 @@
+<%= javascript_include_tag "uploads" %>
+<div class="row-fluid">
+  <%= form_for @email_template, html: { class: "form-horizontal"} do |f| %>
+
+    <div class="form-group required">
+      <%= f.label :group_id, class: "control-label col-sm-2" %>
+      <div class="col-sm-9">
+      <% disabled = params[:action] == "edit" ? true : false %>
+        <%= f.select :group_id, options_for_select(group_options, f.object.group_id), {},{class: "form-control", disabled: disabled} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :version, class: "control-label col-sm-2" %>
+      <div class="col-sm-9">
+        <%= f.text_field :version, readonly: true, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group required">
+      <%= f.label :new_text, class: "control-label col-sm-2" %>
+      <div class="col-sm-9">
+        <%= f.text_area :new_text, class: "wysihtml5"%>
+        <button type="button" class="btn popuper" data-toggle="modal" data-target="#asset_files">Attach File</button>
+      </div>
+    </div>
+
+    <div class="form-group required">
+      <%= f.label :reminder_text, class: "control-label col-sm-2" %>
+      <div class="col-sm-9">
+        <%= f.text_area :reminder_text, class: "wysihtml5" %>
+        <button type="button" class="btn popuper" data-toggle="modal" data-target="#asset_files">Attach File</button>
+      </div>
+    </div>
+    <div class="col-md-offset-2">
+      <%= f.hidden_field :language %>
+      <%= f.submit "Save", :class => 'btn btn-inverse btn-primary', disable_with: "Submitting..." %>
+    </div>
+  <% end %>
+</div>
+
+<%= render partial: "asset_dialog" %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    locale = locals["<%= @language %>"];
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({
+        locale: locale,
+        toolbar: {
+          fa: false, color: true
+        }
+      });
+    });
+  });
+
+</script>

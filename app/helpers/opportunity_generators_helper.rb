@@ -1,0 +1,2 @@
+module OpportunityGeneratorsHelper
+end

@@ -1,0 +1,36 @@
+<h1 class="underline">Listing groups</h1>
+
+<table class="table table-hover">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th colspan="3">Action</th>
+  </tr>
+</thead>
+<tbody>
+<% @groups.each do |group| %>
+  <tr>
+    <td><%= group.name %></td>
+    <td><%= group.description %></td>
+    <td><%= link_to 'Show', group, class: "btn-link" %></td>
+    <td><%= link_to 'Edit', edit_group_path(group), class: "btn-link" %></td>
+    <td><%= link_to 'Delete', group, class: "btn-link delete-entry", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</tbody>
+  <tfoot>
+    <tr>
+    <td ></td>
+    <td colspan="5">
+      <div id="pagination">
+        <%= will_paginate(@groups, renderer: BootstrapPagination::Rails)  %>
+      </div>
+    </td>
+    </tr>
+  </tfoot>
+</table>
+
+<br />
+
+<%= link_to 'New Group', new_group_path, class: "btn-link" %>
